@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Pro By Default",
+  "version": "1.0.0",
+  "description": "Persists your Gemini model choice across new chats.",
+  "permissions": ["storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://gemini.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
