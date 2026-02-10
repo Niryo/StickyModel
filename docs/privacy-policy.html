@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy – Pro By Default</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --fg: #1a1a1a;
+      --muted: #555;
+      --accent: #1a73e8;
+      --card: #fff;
+      --border: #e0e0e0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a1a;
+        --fg: #e8e8e8;
+        --muted: #aaa;
+        --accent: #8ab4f8;
+        --card: #242424;
+        --border: #333;
+      }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+    }
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.25rem;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.15rem;
+      margin-top: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+    p, ul {
+      margin-bottom: 1rem;
+      color: var(--fg);
+    }
+    ul {
+      padding-left: 1.25rem;
+    }
+    li {
+      margin-bottom: 0.35rem;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="subtitle">Pro By Default — Chrome Extension</p>
+
+    <p><strong>Effective date:</strong> February 10, 2026</p>
+
+    <h2>Overview</h2>
+    <p>
+      Pro By Default is a browser extension that remembers your preferred
+      Gemini model so it stays selected across new chats. Your privacy is
+      important — this extension is designed to work with minimal data and
+      zero external communication.
+    </p>
+
+    <h2>Data Collection</h2>
+    <p>This extension does <strong>not</strong> collect, transmit, or share any personal data. Specifically:</p>
+    <ul>
+      <li>No personal information is collected</li>
+      <li>No browsing history is tracked</li>
+      <li>No analytics or telemetry is sent</li>
+      <li>No data is transmitted to any server</li>
+      <li>No third-party services are used</li>
+    </ul>
+
+    <h2>Data Storage</h2>
+    <p>
+      The extension stores a single preference — your last-selected Gemini
+      model name (e.g. "Pro", "Flash", "Thinking") — using Chrome's local
+      storage API (<code>chrome.storage.local</code>). This data:
+    </p>
+    <ul>
+      <li>Never leaves your browser</li>
+      <li>Is not synced to any cloud service</li>
+      <li>Is automatically removed when you uninstall the extension</li>
+    </ul>
+
+    <h2>Permissions</h2>
+    <p>The extension requests the following permissions:</p>
+    <ul>
+      <li>
+        <strong>Storage</strong> — to save your preferred model choice locally
+      </li>
+      <li>
+        <strong>Host access to gemini.google.com</strong> — to detect the
+        current model and restore your preference on new chats
+      </li>
+    </ul>
+
+    <h2>Changes to This Policy</h2>
+    <p>
+      If this policy is updated, the changes will be posted on this page with
+      a revised effective date.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      If you have questions about this privacy policy, you can open an issue on the
+      <a href="https://github.com/Niryo/ProByDefault" target="_blank" rel="noopener">GitHub repository</a>.
+    </p>
+
+    <div class="footer">
+      &copy; 2026 Pro By Default. This extension is open source.
+    </div>
+  </div>
+</body>
+</html>
