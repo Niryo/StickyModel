@@ -1,5 +1,5 @@
 /**
- * E2E tests for the Pro By Default Chrome extension.
+ * E2E tests for the Sticky Model Chrome extension.
  *
  * Tests run against the real gemini.google.com in a headed Chrome instance
  * with the extension loaded. A persistent Chrome profile is used so that
@@ -214,7 +214,7 @@ afterAll(async () => {
 
 // ── Tests ────────────────────────────────────────────────────────────────
 
-describe("Pro By Default extension", () => {
+describe("Sticky Model extension", () => {
   beforeEach(async () => {
     // Navigate to Gemini home (new chat state) before each test
     await page.goto(GEMINI_URL, { waitUntil: "domcontentloaded" });

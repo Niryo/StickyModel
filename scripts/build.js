@@ -81,7 +81,7 @@ function createZip(version) {
 
 // ── Main ────────────────────────────────────────────────────────────────
 
-console.log("\n🔨 Building Pro By Default extension\n");
+console.log("\n🔨 Building Sticky Model extension\n");
 
 console.log("Cleaning...");
 await clean();

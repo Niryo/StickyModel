@@ -63,9 +63,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.tag }}
-          name: Pro By Default ${{ steps.version.outputs.tag }}
+          name: Sticky Model ${{ steps.version.outputs.tag }}
           body: |
-            ## Pro By Default ${{ steps.version.outputs.tag }}
+            ## Sticky Model ${{ steps.version.outputs.tag }}
 
             Ready-to-upload extension zip attached below.
 

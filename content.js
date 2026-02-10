@@ -1,4 +1,4 @@
-// Pro By Default – content script
+// Sticky Model – content script
 // Persists the user's Gemini model choice across new chats.
 
 (function () {
@@ -6,7 +6,7 @@
 
   const STORAGE_KEY = "preferredModel";
   const DEFAULT_MODEL = "Pro";
-  const LOG_PREFIX = "[ProByDefault]";
+  const LOG_PREFIX = "[StickyModel]";
 
   // ── Selectors (based on Gemini's actual DOM) ─────────────────────────
   // The model picker button that opens the dropdown.

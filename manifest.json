@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Pro By Default",
+  "name": "Sticky Model",
   "version": "1.0.0",
   "description": "Persists your Gemini model choice across new chats.",
   "icons": {

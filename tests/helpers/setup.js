@@ -2,7 +2,7 @@
  * E2E test setup helper.
  *
  * Launches a headed Chrome instance with:
- *   - The Pro By Default extension loaded
+ *   - The Sticky Model extension loaded
  *   - A persistent user-data-dir so Google auth survives across runs
  *
  * Navigates to gemini.google.com and waits for the user to be

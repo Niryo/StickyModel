@@ -1,4 +1,4 @@
-# Pro By Default
+# Sticky Model
 
 A zero-UI Chrome extension that persists your Gemini model choice across new chats.
 
