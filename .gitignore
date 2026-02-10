@@ -18,3 +18,7 @@ node_modules
 
 # E2E test Chrome profile (contains session cookies)
 tests/.chrome-profile/
+
+# Build output
+dist/
+build/
