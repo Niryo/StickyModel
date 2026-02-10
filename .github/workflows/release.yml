@@ -68,8 +68,8 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
-          name: pro-by-default-v${{ steps.version.outputs.version }}
-          path: build/pro-by-default-v${{ steps.version.outputs.version }}.zip
+          name: sticky-model-v${{ steps.version.outputs.version }}
+          path: build/sticky-model-v${{ steps.version.outputs.version }}.zip
 
       # ── Master: commit version bump & create GitHub Release ────────
       - name: Commit version bump
@@ -95,5 +95,5 @@ jobs:
             ### Installation
             1. Download the `.zip` file below
             2. Upload it to the Chrome Web Store / Firefox Add-ons developer dashboard
-          files: build/pro-by-default-v${{ steps.version.outputs.version }}.zip
+          files: build/sticky-model-v${{ steps.version.outputs.version }}.zip
           generate_release_notes: true

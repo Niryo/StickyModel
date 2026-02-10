@@ -59,7 +59,7 @@ async function getVersion() {
 
 function createZip(version) {
   return new Promise((resolve, reject) => {
-    const zipName = `pro-by-default-v${version}.zip`;
+    const zipName = `sticky-model-v${version}.zip`;
     const zipPath = join(ZIP_DIR, zipName);
     const output = createWriteStream(zipPath);
     const archive = archiver("zip", { zlib: { level: 9 } });
