@@ -585,9 +585,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ProByDefault@workspace:.":
+"StickyModel@workspace:.":
   version: 0.0.0-use.local
-  resolution: "ProByDefault@workspace:."
+  resolution: "StickyModel@workspace:."
   dependencies:
     archiver: "npm:^7.0.1"
     playwright: "npm:^1.58.2"
