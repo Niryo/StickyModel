@@ -3,6 +3,11 @@
   "name": "Pro By Default",
   "version": "1.0.0",
   "description": "Persists your Gemini model choice across new chats.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
   "permissions": ["storage"],
   "background": {
     "service_worker": "background.js"
