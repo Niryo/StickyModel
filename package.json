@@ -8,6 +8,7 @@
     "test": "vitest run",
     "test:e2e": "vitest run --config vitest.config.js",
     "build": "node scripts/build.js",
+    "dev": "node scripts/dev.js",
     "clean": "rm -rf dist build"
   },
   "devDependencies": {
