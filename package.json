@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "packageManager": "yarn@4.9.1",
+  "type": "module",
   "scripts": {
     "test": "vitest run",
-    "test:e2e": "vitest run --config vitest.config.js"
+    "test:e2e": "vitest run --config vitest.config.js",
+    "build": "node scripts/build.js",
+    "clean": "rm -rf dist build"
   },
   "devDependencies": {
+    "archiver": "^7.0.1",
     "playwright": "^1.58.2",
+    "terser": "^5.46.0",
     "vitest": "^4.0.18"
   }
 }

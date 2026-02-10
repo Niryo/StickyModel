@@ -27,19 +27,45 @@
     console.warn(LOG_PREFIX, ...args);
   }
 
+  // ── Context guard ─────────────────────────────────────────────────────
+  /** Returns true if the extension context has been invalidated (e.g. after
+   *  an extension reload). All chrome.* API calls would throw in that state. */
+  function isContextInvalidated() {
+    return !chrome.runtime?.id;
+  }
+
   // ── Storage helpers (chrome.storage.local) ───────────────────────────
   function getPreferred() {
     return new Promise((resolve) => {
-      chrome.storage.local.get(STORAGE_KEY, (res) =>
-        resolve(res[STORAGE_KEY] ?? null),
-      );
+      if (isContextInvalidated()) {
+        warn("Extension context invalidated – cannot read storage.");
+        resolve(null);
+        return;
+      }
+      try {
+        chrome.storage.local.get(STORAGE_KEY, (res) =>
+          resolve(res[STORAGE_KEY] ?? null),
+        );
+      } catch {
+        warn("Extension context invalidated – cannot read storage.");
+        resolve(null);
+      }
     });
   }
 
   function setPreferred(model) {
+    if (isContextInvalidated()) {
+      warn("Extension context invalidated – cannot write storage.");
+      return Promise.resolve();
+    }
     log("Saving preferred model:", model);
     return new Promise((resolve) => {
-      chrome.storage.local.set({ [STORAGE_KEY]: model }, resolve);
+      try {
+        chrome.storage.local.set({ [STORAGE_KEY]: model }, resolve);
+      } catch {
+        warn("Extension context invalidated – cannot write storage.");
+        resolve();
+      }
     });
   }
 
@@ -258,25 +284,34 @@
 
   window.addEventListener("message", (event) => {
     if (event.source !== window) return;
+    if (isContextInvalidated()) return;
     const { type } = event.data || {};
 
     if (type === "__PBD_GET_STORAGE__") {
       const key = event.data.key;
-      chrome.storage.local.get(key, (result) => {
-        window.postMessage(
-          { type: "__PBD_STORAGE_RESULT__", id: event.data.id, data: result },
-          "*",
-        );
-      });
+      try {
+        chrome.storage.local.get(key, (result) => {
+          window.postMessage(
+            { type: "__PBD_STORAGE_RESULT__", id: event.data.id, data: result },
+            "*",
+          );
+        });
+      } catch {
+        // context gone – silently ignore
+      }
     }
 
     if (type === "__PBD_CLEAR_STORAGE__") {
-      chrome.storage.local.clear(() => {
-        window.postMessage(
-          { type: "__PBD_CLEAR_RESULT__", id: event.data.id },
-          "*",
-        );
-      });
+      try {
+        chrome.storage.local.clear(() => {
+          window.postMessage(
+            { type: "__PBD_CLEAR_RESULT__", id: event.data.id },
+            "*",
+          );
+        });
+      } catch {
+        // context gone – silently ignore
+      }
     }
   });
 
