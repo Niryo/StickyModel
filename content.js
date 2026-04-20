@@ -14,7 +14,7 @@
   // The label inside the picker that shows the current model name.
   const PICKER_LABEL_SEL = '[data-test-id="logo-pill-label-container"]';
   // Individual model options inside the opened dropdown.
-  const MODE_OPTION_SEL = 'button[role="menuitemradio"][data-test-id^="bard-mode-option-"]';
+  const MODE_OPTION_SEL = 'button[role="menuitem"][data-test-id^="bard-mode-option-"]';
   // ── State ────────────────────────────────────────────────────────────
   let isRestoring = false;
   let lastUrl = location.href;
@@ -113,7 +113,7 @@
   }
 
   /**
-   * Wait for a dropdown option whose `.mode-title` text matches the target.
+   * Wait for a dropdown option whose data-test-id matches the target model name.
    */
   function waitForOption(targetModel, timeoutMs) {
     const target = targetModel.toLowerCase().trim();
@@ -121,13 +121,12 @@
       const deadline = Date.now() + timeoutMs;
 
       function search() {
-        const options = document.querySelectorAll(MODE_OPTION_SEL);
-        for (const opt of options) {
-          const title = opt.querySelector(".mode-title");
-          if (title && title.textContent.trim().toLowerCase() === target) {
-            resolve(opt);
-            return;
-          }
+        const option = document.querySelector(
+          `[data-test-id="bard-mode-option-${target}"]`,
+        );
+        if (option) {
+          resolve(option);
+          return;
         }
         if (Date.now() < deadline) {
           setTimeout(search, 100);
@@ -215,9 +214,10 @@
         if (isRestoring) return;
         const option = e.target.closest(MODE_OPTION_SEL);
         if (!option) return;
-        const title = option.querySelector(".mode-title");
-        if (!title) return;
-        const model = title.textContent.trim();
+        const testId = option.getAttribute("data-test-id") ?? "";
+        const slug = testId.replace("bard-mode-option-", "");
+        if (!slug) return;
+        const model = slug.charAt(0).toUpperCase() + slug.slice(1);
         if (model) {
           log("User clicked model:", model);
           setPreferred(model);

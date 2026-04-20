@@ -25,7 +25,7 @@ let page;
 const PICKER_BUTTON_SEL = '[data-test-id="bard-mode-menu-button"]';
 const PICKER_LABEL_SEL = '[data-test-id="logo-pill-label-container"]';
 const MODE_OPTION_SEL =
-  'button[role="menuitemradio"][data-test-id^="bard-mode-option-"]';
+  'button[role="menuitem"][data-test-id^="bard-mode-option-"]';
 
 // ── Helpers ──────────────────────────────────────────────────────────────
 
@@ -218,7 +218,16 @@ describe("Sticky Model extension", () => {
   beforeEach(async () => {
     // Navigate to Gemini home (new chat state) before each test
     await page.goto(GEMINI_URL, { waitUntil: "domcontentloaded" });
-    await page.waitForTimeout(3000); // wait for SPA render + content script init
+    // Wait for the picker label to have content — the extension may be in the middle
+    // of a restoration (dropdown open), which temporarily leaves the label empty.
+    await page.waitForFunction(
+      (sel) => {
+        const el = document.querySelector(sel);
+        return el && el.textContent.trim().length > 0;
+      },
+      PICKER_LABEL_SEL,
+      { timeout: 15000 },
+    );
   });
 
   it("1. detects the model selector on the page", async () => {

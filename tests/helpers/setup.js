@@ -114,9 +114,15 @@ export async function navigateAndWaitForAuth(page) {
   while (Date.now() < deadline) {
     // The user might navigate away to sign in; wait for them to come back
     const onGemini = page.url().includes("gemini.google.com");
-    if (onGemini && (await isSignedIn(page))) {
-      console.log("[setup] Sign-in detected. Continuing tests.");
-      return;
+    if (onGemini) {
+      try {
+        if (await isSignedIn(page)) {
+          console.log("[setup] Sign-in detected. Continuing tests.");
+          return;
+        }
+      } catch {
+        // page is mid-navigation — ignore and retry
+      }
     }
     await page.waitForTimeout(2000);
   }
